@@ -1,0 +1,158 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" (click)="authService.logoutUser()">
+                <span class="nav-link">Logout</span>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container" style="margin: 20px;">
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 20px;">
+            <h3>Select Date to check attendance</h3>
+            <input type="date" class="form-control" (change)='setdata($event)'>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Attendance</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Student Department</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of attend; let i=index">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{a.studentname}}</td>
+                            <td>{{a.studentDepartment}}</td>
+                            <td>{{a.datecreated | amDateFormat:'LL'}}</td>
+                            <td>{{a.attendance}}</td>
+                        </tr>
+                        <tr *ngIf="!attend || attend.length == 0">
+                            <p>No Data</p>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin: 20px;">
+    <header>
+        <H3>List of Available Students</H3>
+    </header>
+    <div class="row">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Add student
+    </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add student</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="angForm" novalidate ngNoForm (ngSubmit)="onSubmit(angForm.value)" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Photo Upload</label>
+                                <input type="file" class="form-control-file" id="photoupload" aria-describedby="studentPhotoupload" (change)="uploadFile($event)">
+                                <small id="studentPhotoupload" class="form-text text-muted">Must have student face visible and only face on the image</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Student  Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="studentname" aria-describedby="studentName" placeholder="Enter Student  Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Student  Department</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="studentDepartment" aria-describedby="studentDepartment" placeholder="Enter Student  Department">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Student Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" formControlName="studentEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">PhotoURl </label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="PhotoURl" aria-describedby="emailHelp" placeholder="photourl">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <figure class="figure">
+                                    <img [src]="downloadURL1" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+                                    <figcaption class="figure-caption">Student image</figcaption>
+                                </figure>
+                            </div>
+
+
+                            <div *ngIf="angForm.controls['studentname'].invalid && (angForm.controls['studentname'].dirty || angForm.controls['studentname'].touched)" class="alert alert-danger">
+                                <div *ngIf="angForm.controls['studentname'].errors.required">
+                                    Name is required.
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid">Submit</button>
+                        </form>
+                        <p>Form value: {{ angForm.value | json }}</p>
+                        <p>Form status: {{ angForm.status | json }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<div class="container" style="margin: 20px;">
+    <div class="row">
+        <div class="col-md-6" *ngFor="let s of students">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" [src]="s.studentPhotoupload" alt="Card image cap">
+                <div class="card-body">
+                    <!-- <td>{{a.studentname}}</td>
+                  <td>{{a.studentDepartment}}</td>
+                  <td>{{a.datecreated}}</td>
+                  <td>{{a.attendance}}</td> -->
+                    <h5 class="card-title">Student Name : {{s.studentname}}</h5>
+                    <p class="card-text">Student Department : {{s.studentDepartment}} </p>
+                    <button class="btn btn-primary" style="color: white;" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="top" (confirm)="deletestud(s.id)" (cancel)="cancelClicked = true">Delete student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
