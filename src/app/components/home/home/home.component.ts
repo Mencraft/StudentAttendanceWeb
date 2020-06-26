@@ -59,6 +59,7 @@ export class HomeComponent implements OnInit {
   }
   createForm() {
     this.angForm = this.fb.group({
+      course: ['', Validators.required],
       studentname: ['', Validators.required ],
       studentDepartment: ['', Validators.required ],
       studentEmail: ['', Validators.required ],
@@ -112,7 +113,7 @@ export class HomeComponent implements OnInit {
     //   api_secret:'OckzeZqcX5piOrxUycN97QtI8IEy9zdz',
     //   image_file: event.target.files[0]
     // }
-    console.log(this.angForm.get('studentPhotoupload').value);
+    console.log(this.angForm.get('course').value);
     // this.httpClient.post<any>(this.SERVER_URL, body).subscribe(
     //   (res) => console.log(res),
     //   (err) => console.log(err)
@@ -174,7 +175,7 @@ this.dats.deleteStudentsData(id);
       const file = event.target.files[0];
       console.log(event.target.id);
       const inputid = event.target.id;
-
+      console.log(this.angForm.get('course').value);
       const filePath = `studentsinfo/${new Date().getTime()}_${filename}`;
       const fileRef = await this.storage.ref(filePath);
       // this.percentage = this.task.percentageChanges();
@@ -235,7 +236,7 @@ this.http.post(this.SERVER_URL, formData).subscribe(
          var formData: any = new FormData();
           formData.append("api_key", 'm73Fv6ikNDXkfOtjvDAc_x2HZ2JduWzt');
           formData.append("api_secret", 'OckzeZqcX5piOrxUycN97QtI8IEy9zdz');
-          formData.append("faceset_token", '27ba1cdab4bacb9e076fec3c1aca558c');
+          formData.append("faceset_token", this.angForm.get('course').value);
           formData.append("face_tokens", this.facetoken);
 
           this.http.post('https://api-us.faceplusplus.com/facepp/v3/faceset/addface', formData).subscribe(

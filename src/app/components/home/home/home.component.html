@@ -83,6 +83,13 @@
                     <div class="modal-body">
                         <form [formGroup]="angForm" novalidate ngNoForm (ngSubmit)="onSubmit(angForm.value)" enctype="multipart/form-data">
                             <div class="form-group">
+                                <label for="">Select Course</label>
+                                <select name="course" id="" formControlName="course" class="form-control">
+                                    <option value="27ba1cdab4bacb9e076fec3c1aca558c">Information Technology</option>
+                                    <option value="4fe93c915593849596274fb2c7befa4f">Buisness Information</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleFormControlFile1">Photo Upload</label>
                                 <input type="file" class="form-control-file" id="photoupload" aria-describedby="studentPhotoupload" (change)="uploadFile($event)">
                                 <small id="studentPhotoupload" class="form-text text-muted">Must have student face visible and only face on the image</small>
