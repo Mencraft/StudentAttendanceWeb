@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "tunesbid-a0909": {
-      "hosting": {
-        "attendance": [
-          "tunesbid-a0909"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "tunesbid-a0909"
+    "default": "workerstrackers"
   }
 }

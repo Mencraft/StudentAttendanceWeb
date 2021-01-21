@@ -5,14 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyDvYTo19rieJzWP8R47QUftgsizFsO2fpw",
-    authDomain: "tunesbid-a0909.firebaseapp.com",
-    databaseURL: "https://tunesbid-a0909.firebaseio.com",
-    projectId: "tunesbid-a0909",
-    storageBucket: "tunesbid-a0909.appspot.com",
-    messagingSenderId: "507676004942",
-    appId: "1:507676004942:web:afa16125e5824f6c01291f",
-    measurementId: "G-Q86XPMGY5M"
+    apiKey: "AIzaSyAkzOQhUbm2waPKEVtMcaSPWHiGQCdNTFs",
+    authDomain: "workerstrackers.firebaseapp.com",
+    databaseURL: "https://workerstrackers.firebaseio.com",
+    projectId: "workerstrackers",
+    storageBucket: "workerstrackers.appspot.com",
+    messagingSenderId: "337879136130",
+    appId: "1:337879136130:web:59a80e9f61f22777cbc19b"
   }
 };
 
