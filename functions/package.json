@@ -13,7 +13,7 @@
     "node": "8"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "axios-file": "^1.0.17",
     "cors": "^2.8.5",
     "firebase-admin": "^8.10.0",
