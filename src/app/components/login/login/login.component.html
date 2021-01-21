@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="loginForm">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email" [class.invalid]="!loginForm.controls['email'].valid &&
+        loginForm.controls['email'].touched">
+                        <small id="emailHelp" class="form-text text-muted error-message" *ngIf="!loginForm.controls['email'].valid &&
+            loginForm.controls['email'].touched">Please enter a valid email address.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Password" [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
+                        <small id="emailHelp" class="form-text text-muted error-message" *ngIf="!loginForm.controls['password'].valid
+            && loginForm.controls['password'].touched">Your password needs more than 6 characters.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary" (click)="loginUser(loginForm)" [disabled]="!loginForm.valid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+
+    </div>
+</div>
